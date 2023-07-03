@@ -33,4 +33,4 @@ Then send your XSS payload to the victim while the mqxss client is running, ex: 
 - [ ] Encryption (currently just obfuscated)
 - [ ] Set user , password  for brokers that require it at runtime
 - [x] Generate js payload at runtime to hook browsers with
-- [ ] Open browser with hooked browser cookies for convenience
+- [x] Open browser with hooked browser cookies for convenience
