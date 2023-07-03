@@ -1,0 +1,5 @@
+paho_mqtt==1.6.1
+pandas==1.4.3
+pycryptodome==3.17
+Requests==2.31.0
+rich==13.4.2
