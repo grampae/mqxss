@@ -3,7 +3,10 @@
 
 **mqxss acts as a client to communicate with hooked browsers over MQTT**
 
-![Screenshot from 2023-07-03 00-57-22](https://github.com/grampae/mqxss/assets/36344197/72bda6c6-7e27-4269-8bc3-19d7b171a76a)
+
+
+![Screenshot from 2023-07-03 15-15-35](https://github.com/grampae/mqxss/assets/36344197/d5fae62a-bc5c-4d98-b45e-03cdf541e979)
+
 
 
 
