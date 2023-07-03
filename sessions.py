@@ -82,6 +82,23 @@ def getagent(ID):
 		return agentz
 		conn.close()
 
+# get location and cookie for browser
+def getlocook(ID):
+	conn = sqlite3.connect(dbfile)
+	cursor = conn.cursor()
+	locret = pd.read_sql('SELECT Location FROM hooked where ID = ?', conn, params=(ID,))
+	cookret = pd.read_sql('SELECT Cookies FROM hooked where ID = ?', conn, params=(ID,))
+	df_empty = pd.DataFrame(locret)
+	df_empty2 = pd.DataFrame(cookret)
+	if df_empty.empty:
+		print("[[grey82]mqXSS[/grey82]] [grey89]No Location and Cookies with with ID of "+ID+".[/grey89]")
+		conn.close()
+		return
+	else:
+		getlocook.location = df_empty.to_string(header=False, index=False)
+		getlocook.cookies = df_empty2.to_string(header=False, index=False)
+		conn.close()
+
 #display hooked
 def gethooked():
 	pd.set_option('display.max_colwidth', 35)
