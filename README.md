@@ -20,8 +20,9 @@ Then send your XSS payload to the victim while the mqxss client is running, ex: 
  
 **Features:**
 
-- **Currently only works with mqtt servers that use secure websockets however future version will supports mqtts as well.**
+- **currently only works with mqtt servers that use secure websockets however future version will supports mqtts as well.**
 - **view hooked browsers**
+- **when hooked it grabs cookies, ip, device type, user agent**
 - **view past hooked (unhooked) browsers**
 - **send js to currently hooked browsers and get response if available**
 - **pushover notification**
