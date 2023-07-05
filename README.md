@@ -10,7 +10,7 @@
 
 
 
-I created this without a lot of bells and whistles so that the user could send raw JS to the hooked browser.  The benefit to using this over beef or xsshunter is thereis no infra setup, you can use a public broker (however currently uses obfuscation, encryption is in the works).
+I created this without a lot of bells and whistles so that the user could send raw JS to the hooked browser.  The benefit to using this over beef or xsshunter is that there is no infra setup, you can use a public broker (however currently uses obfuscation, encryption is in the works).
 
 Hooked browsers will communicate in the MQTT topic on the broker you specify, there are many public/free brokers to test this with.
 
