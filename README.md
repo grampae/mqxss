@@ -1,7 +1,7 @@
 # mqxss
 
 
-**mqxss acts as a client to communicate with hooked browsers over MQTT**
+## **mqxss acts as a client to communicate with hooked browsers over MQTT**
 
 
 
