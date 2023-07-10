@@ -23,8 +23,8 @@ Then send your XSS payload to the victim while the mqxss client is running, ex: 
  
 **Features:**
 
-- **js payload utilizes MQTT QoS 1 and Last Will, mqxss will be notified of disconnects or connects that occur while client is not connected to the broker.
-- **currently only works with mqtt brokers that use secure websockets however future version will supports mqtts as well.**
+- **js payload utilizes MQTT QoS 1 and Last Will, mqxss will be notified of disconnects or connects that occur while client is not connected to the broker**
+- **currently only works with mqtt brokers that use secure websockets however future version will supports mqtts as well**
 - **open hooked browser location with captured cookies**
 - **when hooked it grabs cookies, ip, device type, user agent**
 - **view past hooked (unhooked) browsers**
