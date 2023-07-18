@@ -10,7 +10,7 @@
 
 
 
-The benefit to using this over beef or xsshunter is that there is no infra setup, you can use a public broker (however currently uses obfuscation, encryption is in the works).
+The benefit to using this over beef or xsshunter is that besides hosting the js payload there is no infra setup, you can use a public broker (however currently uses obfuscation, encryption is in the works).
 
 Hooked browsers will communicate in the MQTT topic on the broker you specify, there are many public/free brokers to test this with.
  
