@@ -42,12 +42,10 @@ The client utilizes the python paho.mqtt library while the js payload utilizes '
 - **js payload utilizes MQTT QoS 1 and Last Will, mqxss will be notified of disconnects or connects that occur while client is not connected to the broker**
 - **generate js payload at runtime to hook browsers with**
 - **currently only works with mqtt brokers that use secure websockets**
-- **open hooked browser location with captured cookies**
+- **open hooked browser location with captured cookies in browser for convenience**
 - **when hooked it grabs cookies, ip, device type, user agent**
 - **view past hooked (unhooked) browsers**
 - **send js to currently hooked browsers and get response if available**
-- **pushover notification**
 - **screenshot of hooked browser**
 - **set user , password  for brokers that require it at runtime**
-- **generate js payload at runtime to hook browsers with**
-- **open browser with hooked browser cookies for convenience**
+- **pushover notification**
