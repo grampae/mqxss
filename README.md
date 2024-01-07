@@ -48,10 +48,6 @@ The client utilizes the python paho.mqtt library while the js payload utilizes '
 - **send js to currently hooked browsers and get response if available**
 - **pushover notification**
 - **screenshot of hooked browser**
-
-**Todo:**
-
-- [ ] Encryption (currently just obfuscated)
-- [x] Set user , password  for brokers that require it at runtime
-- [x] Generate js payload at runtime to hook browsers with
-- [x] Open browser with hooked browser cookies for convenience
+- **set user , password  for brokers that require it at runtime**
+- **generate js payload at runtime to hook browsers with**
+- **open browser with hooked browser cookies for convenience**
