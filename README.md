@@ -20,6 +20,9 @@ The client utilizes the python paho.mqtt library while the js payload utilizes '
 ***
  
 ## Directions
+
+![Screenshot from 2024-01-17 11-34-59](https://github.com/grampae/mqxss/assets/36344197/4ac417e6-d61c-4859-9d37-690bdba6cc3c)
+
  
 **To generate a JS payload** to hook browsers with set the `-g` flag at runtime along with your broker, port and topic variables.  Doing so will create your payload in the /js/ folder.  
 
