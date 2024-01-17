@@ -48,4 +48,4 @@ The client utilizes the python paho.mqtt library while the js payload utilizes '
 - **send js to currently hooked browsers and get response if available**
 - **screenshot of hooked browser**
 - **set user , password  for brokers that require it at runtime**
-- **pushover notification**
+- **pushover notification by setting ptoken and userkey variables in mqxss.py, then utilizing the -po command line flag**
